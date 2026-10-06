@@ -1,0 +1,204 @@
+/* Direction A, the paper's figure: the simulator's look. */
+
+.sim-header h1 {
+  font-weight: 400;
+  font-size: var(--size-heading);
+}
+.home {
+  color: var(--muted);
+}
+button,
+select {
+  background: var(--ground);
+  border: 1px solid color-mix(in oklab, var(--muted) 70%, var(--ground));
+  border-radius: var(--radius-control);
+}
+button:hover,
+select:hover {
+  border-color: var(--ink);
+}
+button.primary {
+  background: var(--ink);
+  color: var(--ground);
+  border-color: var(--ink);
+}
+button.quiet {
+  border-color: transparent;
+  color: var(--muted);
+  text-decoration: underline;
+}
+input[type="text"] {
+  background: var(--code-fill);
+  border: 1px solid color-mix(in oklab, var(--muted) 70%, var(--ground));
+  border-radius: var(--radius-control);
+  font-family: var(--font-code);
+}
+.example-button {
+  font-style: italic;
+}
+.example-button .eb-title {
+  font-style: normal;
+  font-weight: 600;
+}
+.gallery,
+.glossary {
+  padding-block: var(--space-3);
+}
+.gallery li a {
+  font-weight: 600;
+}
+.gallery li[aria-current] a {
+  text-decoration: none;
+}
+.gallery li[aria-current]::marker {
+  color: var(--change);
+}
+.g-o {
+  font-style: italic;
+  color: var(--muted);
+}
+.g-note {
+  color: var(--muted);
+  font-style: italic;
+}
+.intro {
+  font-size: var(--size-body);
+  line-height: var(--leading-body);
+}
+
+/* The listings sit on a light fill with no frame, like the paper's on its page. */
+.code {
+  background: var(--code-fill);
+}
+.kw {
+  font-weight: 600;
+}
+.num {
+  color: inherit;
+}
+.pane-title {
+  font-weight: 600;
+}
+.t-source::after {
+  content: "";
+}
+.mode-g {
+  color: var(--muted);
+}
+.mode-e,
+.mean-call {
+  font-weight: 600;
+}
+.hint {
+  font-weight: 400;
+}
+.hint.mode-e {
+  font-weight: 600;
+}
+.pane-det.counter {
+  border: 1px solid var(--alert);
+  padding: var(--space-3);
+  margin: calc(-1 * var(--space-3) - 1px);
+}
+.pane-det.counter .pane-title {
+  color: var(--alert);
+}
+.alert strong {
+  font-weight: 600;
+}
+.band-title {
+  font-weight: 400;
+  font-size: var(--size-heading);
+}
+.step-n {
+  font-style: italic;
+}
+.step-head {
+  font-style: italic;
+}
+.cell-label {
+  font-style: italic;
+}
+.step-note {
+  font-style: italic;
+  font-family: var(--font-text);
+}
+.draw code {
+  color: var(--muted);
+  font-weight: 600;
+}
+.honesty {
+  font-style: italic;
+}
+.honesty .cmd {
+  font-style: normal;
+}
+table.stats thead th.t-det {
+  color: var(--change);
+}
+.factor strong {
+  font-weight: 600;
+  color: var(--change);
+}
+.premises h3,
+.exact h3 {
+  font-weight: 600;
+}
+.frac {
+  font-weight: 600;
+}
+
+/* Charts: the paper's grey and teal; the source as an outline, the determinized program filled. */
+.chart text {
+  font-family: var(--font-text);
+  font-size: 13px;
+  fill: var(--muted);
+}
+.chart .row-label {
+  font-size: 15px;
+  font-weight: 600;
+  fill: var(--ink);
+}
+.chart .row-det {
+  fill: var(--change);
+}
+.chart .outline {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 1.5;
+  stroke-linejoin: miter;
+}
+.chart .filled {
+  fill: var(--change-fill);
+  stroke: var(--change);
+  stroke-width: 1;
+}
+.chart .axis,
+.chart .tick {
+  stroke: var(--muted);
+  stroke-width: 1;
+}
+.chart .ref {
+  stroke: var(--rule);
+  stroke-dasharray: 2 3;
+}
+.chart .ref-label {
+  font-size: 12px;
+}
+.chart .break {
+  fill: none;
+  stroke: var(--ground);
+  stroke-width: 2.5;
+}
+.chart .clip-label {
+  fill: var(--ink);
+}
+.chart .mean-mark {
+  fill: var(--ink);
+}
+.chart .mean-det {
+  fill: var(--change);
+}
+.chart .mean-label {
+  font-style: italic;
+}

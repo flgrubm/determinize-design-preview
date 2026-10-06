@@ -1,0 +1,141 @@
+/*
+ * Design tokens of the determinize site and simulator; becomes site/tokens.css (SPEC W4).
+ *
+ * Both directions are defined until one is chosen: A under :root, B under
+ * :root[data-direction="b"]. The chosen block then moves to :root and the other is deleted,
+ * together with its @font-face rules.
+ *
+ * Colours are roles (BRIEF.md §2): --ground, --ink, --muted, --change (what determinization
+ * changes: E sites, mean_ calls, the determinized output), --alert, and in B --given (G sites,
+ * the G-draw axis). Everything else is mixed from them. light-dark() follows color-scheme, which
+ * the simulator's theme select sets on :root.
+ */
+
+@font-face {
+  font-family: "Libertinus Serif";
+  src: url("fonts/libertinus-serif-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Libertinus Serif";
+  src: url("fonts/libertinus-serif-400-italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Libertinus Serif";
+  src: url("fonts/libertinus-serif-600.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inconsolata";
+  src: url("fonts/inconsolata-400.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inconsolata";
+  src: url("fonts/inconsolata-600.woff2") format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Atkinson Hyperlegible Next";
+  src: url("fonts/atkinson-next-var.woff2") format("woff2");
+  font-weight: 200 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: "JuliaMono";
+  src: url("fonts/juliamono-400.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "JuliaMono";
+  src: url("fonts/juliamono-600.woff2") format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+
+/* Metric-matched fallbacks, so that swapping in the web fonts doesn't move the layout. */
+@font-face {
+  font-family: "Libertinus fallback";
+  src: local("Georgia"), local("DejaVu Serif");
+  size-adjust: 88%;
+}
+@font-face {
+  font-family: "Atkinson fallback";
+  src: local("Arial"), local("DejaVu Sans");
+  size-adjust: 102%;
+}
+
+@layer tokens {
+  :root {
+    color-scheme: light dark;
+
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.5rem;
+    --space-6: 2rem;
+    --space-7: 3rem;
+    --space-8: 4rem;
+
+    --control-height: 2rem;
+    --target-min: 1.5rem;
+    --radius-control: 2px;
+    --step-fade: 160ms;
+  }
+
+  :root[data-theme="light"] {
+    color-scheme: light;
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :root {
+      --step-fade: 0ms;
+    }
+  }
+
+  /* A: the paper's figure. */
+  :root {
+    --ground: light-dark(#ffffff, #17191c);
+    --ink: light-dark(#1e1c19, #ece8e1);
+    --muted: light-dark(#5f5a53, #a39d93);
+    --change: light-dark(#00666a, #5cc3bd);
+    --alert: light-dark(#b3261e, #f28b82);
+
+    --code-fill: color-mix(in oklab, var(--ink) 4%, var(--ground));
+    --change-fill: color-mix(in oklab, var(--change) 28%, var(--ground));
+    --highlight: color-mix(in oklab, var(--ink) 10%, transparent);
+    --rule: color-mix(in oklab, var(--muted) 35%, var(--ground));
+
+    --font-text: "Libertinus Serif", "Libertinus fallback", Georgia, serif;
+    --font-code: "Inconsolata", ui-monospace, monospace;
+
+    --size-small: 0.8125rem; /* 13 px: axis labels */
+    --size-ui: 0.9375rem; /* 15 px: interface, captions, code */
+    --size-code: 0.9375rem;
+    --size-body: 1.125rem; /* 18 px: landing page text */
+    --size-heading: 1.5rem; /* 24 px */
+    --size-title: 2.5rem; /* 40 px */
+    --leading-body: 1.56;
+    --leading-ui: 1.47;
+    --leading-code: 1.47;
+    --weight-heading: 400;
+    --weight-strong: 600;
+    --measure: 36rem;
+    --figure-width: 60rem;
+  }
+
+}

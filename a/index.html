@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body>
+<title>Determinize direction A</title>
+<meta name="description" content="Type inference that replaces random draws by their means, with the proofs checked in Lean.">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="site.css">
+<nav class="mockbar" aria-label="Mockup pages"><span>Mockup, direction A: the paper's figure.</span><a href="./" aria-current="page">Landing page</a><a href="sim.html">Simulator</a></nav>
+<main class="page">
+  <header class="masthead">
+    <h1>Determinize</h1>
+    <p class="summary">Type inference finds the random draws in a probabilistic program that can be replaced by the means of their distributions. For domain-safe programs of type <code>float[E]</code>, the replacement keeps the expected output and does not increase its variance.</p>
+    <ul class="links">
+      <li><a href="sim.html">Simulator</a></li>
+      <li><a href="https://julesjacobs.com/determinize/docs/">API documentation</a></li>
+      <li><a href="https://github.com/julesjacobs/determinize">Source</a></li>
+      <!-- paper: <li><a href="determinize.pdf">Paper (PDF)</a></li> -->
+      <!-- journal: <li><a href="">Journal</a></li> -->
+    </ul>
+  </header>
+
+  <figure class="example" aria-labelledby="example-caption">
+    <div class="listings">
+      <div class="listing">
+        <p class="listing-head">Source (modes inferred)</p>
+<pre class="code"><code><b>let</b> x = uniform<span class="hint mode-g" title="G: kept random">[G]</span>(0, 1) <b>in</b>
+<b>let</b> y = gaussian<span class="hint mode-e" title="E: replaced by its mean">[E]</span>(x, 1) <b>in</b>
+x * y</code></pre>
+      </div>
+      <div class="listing">
+        <p class="listing-head det">Determinized</p>
+<pre class="code"><code><b>let</b> x = uniform<span class="mark mode-g">[G]</span>(0, 1) <b>in</b>
+<b>let</b> y = <span class="mean-call">mean_gauss</span>(x, 1) <b>in</b>
+x * y</code></pre>
+      </div>
+    </div>
+    <div class="chart-wrap"><svg class="chart stacked wide" viewBox="0 0 960 292" role="img" aria-labelledby="lw-t" preserveAspectRatio="xMidYMid meet"><title id="lw-t">Histograms of 10 000 runs of each program on one axis: the source spreads from about −2 to 3, the determinized program stays between 0 and 1.</title><line class="ref" x1="8" x2="952" y1="51.37" y2="51.37"/><text class="ref-label" x="952" y="47.37" text-anchor="end">1 000 runs</text><text class="row-label row-source" x="8" y="14">Source</text><path class="outline" d="M8.00 130 L8.00 129.92 L26.88 129.92 L26.88 130.00 L45.76 130.00 L45.76 129.76 L64.64 129.76 L64.64 129.61 L83.52 129.61 L83.52 129.84 L102.40 129.84 L102.40 129.29 L121.28 129.29 L121.28 129.37 L140.16 129.37 L140.16 128.51 L159.04 128.51 L159.04 128.51 L177.92 128.51 L177.92 127.48 L196.80 127.48 L196.80 127.72 L215.68 127.72 L215.68 125.68 L234.56 125.68 L234.56 124.57 L253.44 124.57 L253.44 122.22 L272.32 122.22 L272.32 117.66 L291.20 117.66 L291.20 112.86 L310.08 112.86 L310.08 107.59 L328.96 107.59 L328.96 98.39 L347.84 98.39 L347.84 83.85 L366.72 83.85 L366.72 39.81 L385.60 39.81 L385.60 31.79 L404.48 31.79 L404.48 66.31 L423.36 66.31 L423.36 81.25 L442.24 81.25 L442.24 86.28 L461.12 86.28 L461.12 90.21 L480.00 90.21 L480.00 96.90 L498.88 96.90 L498.88 103.35 L517.76 103.35 L517.76 103.35 L536.64 103.35 L536.64 107.43 L555.52 107.43 L555.52 112.07 L574.40 112.07 L574.40 111.44 L593.28 111.44 L593.28 111.99 L612.16 111.99 L612.16 117.42 L631.04 117.42 L631.04 119.23 L649.92 119.23 L649.92 119.70 L668.80 119.70 L668.80 121.51 L687.68 121.51 L687.68 123.95 L706.56 123.95 L706.56 123.47 L725.44 123.47 L725.44 124.81 L744.32 124.81 L744.32 126.30 L763.20 126.30 L763.20 126.23 L782.08 126.23 L782.08 127.09 L800.96 127.09 L800.96 127.56 L819.84 127.56 L819.84 128.43 L838.72 128.43 L838.72 128.66 L857.60 128.66 L857.60 128.66 L876.48 128.66 L876.48 128.74 L895.36 128.74 L895.36 129.61 L914.24 129.61 L914.24 129.14 L933.12 129.14 L933.12 129.76 L952.00 129.76 L952.00 130"/><line class="axis" x1="8" x2="952" y1="130" y2="130"/><path class="mean-mark mean-source" d="M448.53 131 l-4.5 8 h9 z"><title>mean 1/3</title></path><line class="ref" x1="8" x2="952" y1="187.37" y2="187.37"/><text class="ref-label" x="952" y="183.37" text-anchor="end">1 000 runs</text><text class="row-label row-det" x="8" y="150">Determinized</text><rect class="filled" x="386.10" y="156.00" width="17.88" height="110.00"/><rect class="filled" x="404.98" y="163.63" width="17.88" height="102.37"/><rect class="filled" x="423.86" y="186.35" width="17.88" height="79.65"/><rect class="filled" x="442.74" y="199.25" width="17.88" height="66.75"/><rect class="filled" x="461.62" y="206.40" width="17.88" height="59.60"/><rect class="filled" x="480.50" y="214.03" width="17.88" height="51.97"/><rect class="filled" x="499.38" y="217.17" width="17.88" height="48.83"/><rect class="filled" x="518.26" y="219.30" width="17.88" height="46.70"/><rect class="filled" x="537.14" y="220.47" width="17.88" height="45.53"/><rect class="filled" x="556.02" y="225.59" width="17.88" height="40.41"/><path class="break" d="M384.60 163 L405.48 159 M384.60 167 L405.48 163"/><text class="clip-label" x="409.48" y="167">3 109 runs</text><line class="axis" x1="8" x2="952" y1="266" y2="266"/><path class="mean-mark mean-det" d="M448.53 267 l-4.5 8 h9 z"><title>mean 1/3</title></path><line class="tick" x1="8.00" x2="8.00" y1="266" y2="270"/><text class="tick-label" x="8.00" y="284" text-anchor="middle">−2</text><line class="tick" x1="196.80" x2="196.80" y1="266" y2="270"/><text class="tick-label" x="196.80" y="284" text-anchor="middle">−1</text><line class="tick" x1="385.60" x2="385.60" y1="266" y2="270"/><text class="tick-label" x="385.60" y="284" text-anchor="middle">0</text><line class="tick" x1="574.40" x2="574.40" y1="266" y2="270"/><text class="tick-label" x="574.40" y="284" text-anchor="middle">1</text><line class="tick" x1="763.20" x2="763.20" y1="266" y2="270"/><text class="tick-label" x="763.20" y="284" text-anchor="middle">2</text><line class="tick" x1="952.00" x2="952.00" y1="266" y2="270"/><text class="tick-label" x="952.00" y="284" text-anchor="middle">3</text></svg><svg class="chart stacked narrow" viewBox="0 0 358 240" role="img" aria-labelledby="ln-t" preserveAspectRatio="xMidYMid meet"><title id="ln-t">Histograms of 10 000 runs of each program on one axis.</title><line class="ref" x1="8" x2="350" y1="43.96" y2="43.96"/><text class="ref-label" x="350" y="39.96" text-anchor="end">1 000 runs</text><text class="row-label row-source" x="8" y="14">Source</text><path class="outline" d="M8.00 104 L8.00 103.94 L14.84 103.94 L14.84 104.00 L21.68 104.00 L21.68 103.82 L28.52 103.82 L28.52 103.70 L35.36 103.70 L35.36 103.88 L42.20 103.88 L42.20 103.46 L49.04 103.46 L49.04 103.52 L55.88 103.52 L55.88 102.86 L62.72 102.86 L62.72 102.86 L69.56 102.86 L69.56 102.08 L76.40 102.08 L76.40 102.26 L83.24 102.26 L83.24 100.70 L90.08 100.70 L90.08 99.86 L96.92 99.86 L96.92 98.06 L103.76 98.06 L103.76 94.57 L110.60 94.57 L110.60 90.91 L117.44 90.91 L117.44 86.89 L124.28 86.89 L124.28 79.86 L131.12 79.86 L131.12 68.75 L137.96 68.75 L137.96 35.13 L144.80 35.13 L144.80 29.01 L151.64 29.01 L151.64 55.37 L158.48 55.37 L158.48 66.77 L165.32 66.77 L165.32 70.62 L172.16 70.62 L172.16 73.62 L179.00 73.62 L179.00 78.72 L185.84 78.72 L185.84 83.65 L192.68 83.65 L192.68 83.65 L199.52 83.65 L199.52 86.77 L206.36 86.77 L206.36 90.31 L213.20 90.31 L213.20 89.83 L220.04 89.83 L220.04 90.25 L226.88 90.25 L226.88 94.39 L233.72 94.39 L233.72 95.77 L240.56 95.77 L240.56 96.13 L247.40 96.13 L247.40 97.52 L254.24 97.52 L254.24 99.38 L261.08 99.38 L261.08 99.02 L267.92 99.02 L267.92 100.04 L274.76 100.04 L274.76 101.18 L281.60 101.18 L281.60 101.12 L288.44 101.12 L288.44 101.78 L295.28 101.78 L295.28 102.14 L302.12 102.14 L302.12 102.80 L308.96 102.80 L308.96 102.98 L315.80 102.98 L315.80 102.98 L322.64 102.98 L322.64 103.04 L329.48 103.04 L329.48 103.70 L336.32 103.70 L336.32 103.34 L343.16 103.34 L343.16 103.82 L350.00 103.82 L350.00 104"/><line class="axis" x1="8" x2="350" y1="104" y2="104"/><path class="mean-mark mean-source" d="M167.60 105 l-4.5 8 h9 z"><title>mean 1/3</title></path><line class="ref" x1="8" x2="350" y1="153.96" y2="153.96"/><text class="ref-label" x="350" y="149.96" text-anchor="end">1 000 runs</text><text class="row-label row-det" x="8" y="124">Determinized</text><rect class="filled" x="145.30" y="130.00" width="5.84" height="84.00"/><rect class="filled" x="152.14" y="135.82" width="5.84" height="78.18"/><rect class="filled" x="158.98" y="153.18" width="5.84" height="60.82"/><rect class="filled" x="165.82" y="163.02" width="5.84" height="50.98"/><rect class="filled" x="172.66" y="168.49" width="5.84" height="45.51"/><rect class="filled" x="179.50" y="174.31" width="5.84" height="39.69"/><rect class="filled" x="186.34" y="176.71" width="5.84" height="37.29"/><rect class="filled" x="193.18" y="178.33" width="5.84" height="35.67"/><rect class="filled" x="200.02" y="179.24" width="5.84" height="34.76"/><rect class="filled" x="206.86" y="183.14" width="5.84" height="30.86"/><path class="break" d="M143.80 137 L152.64 133 M143.80 141 L152.64 137"/><text class="clip-label" x="156.64" y="141">3 109 runs</text><line class="axis" x1="8" x2="350" y1="214" y2="214"/><path class="mean-mark mean-det" d="M167.60 215 l-4.5 8 h9 z"><title>mean 1/3</title></path><line class="tick" x1="8.00" x2="8.00" y1="214" y2="218"/><text class="tick-label" x="8.00" y="232" text-anchor="middle">−2</text><line class="tick" x1="76.40" x2="76.40" y1="214" y2="218"/><text class="tick-label" x="76.40" y="232" text-anchor="middle">−1</text><line class="tick" x1="144.80" x2="144.80" y1="214" y2="218"/><text class="tick-label" x="144.80" y="232" text-anchor="middle">0</text><line class="tick" x1="213.20" x2="213.20" y1="214" y2="218"/><text class="tick-label" x="213.20" y="232" text-anchor="middle">1</text><line class="tick" x1="281.60" x2="281.60" y1="214" y2="218"/><text class="tick-label" x="281.60" y="232" text-anchor="middle">2</text><line class="tick" x1="350.00" x2="350.00" y1="214" y2="218"/><text class="tick-label" x="350.00" y="232" text-anchor="middle">3</text></svg></div>
+    <table class="values">
+      <thead><tr><td></td><th scope="col">Source</th><th scope="col" class="det">Determinized</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Expected output</th><td>1/3</td><td>1/3</td></tr>
+        <tr><th scope="row">Variance</th><td>19/45 (0.422)</td><td>4/45 (0.089)</td></tr>
+        <tr><th scope="row">Variance-reduction factor</th><td></td><td>4.75</td></tr>
+      </tbody>
+    </table>
+    <figcaption id="example-caption">A signal <var>x</var> and a noisy measurement <var>y</var> of it. Given <var>x</var>, <var>y</var> has mean <var>x</var>, and the output is affine in <var>y</var>, so <var>y</var> is replaced by its mean; <var>x</var> stays random. Both programs have expected output 1/3. The histograms show 10&#8201;000 runs of each; the values in the table are exact. <a href="sim.html#noisy-product">Open this example in the simulator</a>.</figcaption>
+  </figure>
+
+  <section class="proved" aria-labelledby="proved-h">
+    <h2 id="proved-h">What is proved</h2>
+    <p>For a closed program <var>e</var> of type <code>float[E]</code> that is <a href="https://julesjacobs.com/determinize/docs/Determinize/Spec/Semantics.html#Determinize.Spec.Paper.DomainSafe" title="DomainSafe">domain-safe</a>, and its <a href="https://julesjacobs.com/determinize/docs/Determinize/Spec/Syntax.html#Determinize.Spec.Paper.Expr.determinize" title="Expr.determinize">determinization</a>:</p>
+    <ol>
+      <li>it returns with the same probability as <var>e</var> (<a href="https://julesjacobs.com/determinize/docs/Determinize/Theorems.html#Determinize.Theorems.output_mass_preservation" title="Determinize.Theorems.output_mass_preservation">output mass preservation</a>);</li>
+      <li>if <var>e</var> returns with positive probability and its expectation is defined, the determinized program's <a href="https://julesjacobs.com/determinize/docs/Determinize/Spec/Expectation.html#Determinize.Spec.returnedExpectation" title="returnedExpectation">expected output given that it returns</a> equals <var>e</var>&rsquo;s, possibly infinite (<a href="https://julesjacobs.com/determinize/docs/Determinize/Theorems.html#Determinize.Theorems.expectation_preservation" title="Determinize.Theorems.expectation_preservation">expectation preservation</a>);</li>
+      <li>if <var>e</var> returns with positive probability and has a finite second moment, its <a href="https://julesjacobs.com/determinize/docs/Determinize/Spec/Expectation.html#Determinize.Spec.returnedVariance" title="returnedVariance">variance given that it returns</a> is at most <var>e</var>&rsquo;s (<a href="https://julesjacobs.com/determinize/docs/Determinize/Theorems.html#Determinize.Theorems.variance_non_increase" title="Determinize.Theorems.variance_non_increase">variance non-increase</a>);</li>
+      <li>for almost every terminating G trace, it returns <var>e</var>&rsquo;s mean output given that trace (<a href="https://julesjacobs.com/determinize/docs/Determinize/Theorems.html#Determinize.Theorems.tracewise_soundness" title="Determinize.Theorems.tracewise_soundness">tracewise soundness</a>).</li>
+    </ol>
+    <p>Inference fails only when no assignment of modes agrees with the modes written in the program. Otherwise it returns the assignment with the most E draws: every draw that some valid assignment marks E is marked E (<a href="https://julesjacobs.com/determinize/docs/Determinize/Theorems.html#Determinize.Theorems.inference_correctness" title="Determinize.Theorems.inference_correctness">inference correctness</a>). Domain safety and integrability are premises; typing does not establish them.</p>
+    <p class="leannote">Each underlined name in this section links to its statement or definition in the Lean development.</p>
+  </section>
+
+  <p class="honesty">The simulator is an unverified visualization. The Lean development, its command-line tool and the theorems above are the checked artefacts.</p>
+
+  <footer class="foot">Built from commit <a href="https://github.com/julesjacobs/determinize/tree/67f6030"><code>67f6030</code></a>.</footer>
+</main>
+
+</body>
+</html>

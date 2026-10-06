@@ -1,0 +1,234 @@
+/* Direction B, given the G draws: the simulator's look. */
+
+.sim-header h1 {
+  font-size: var(--size-heading);
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+.home {
+  color: var(--muted);
+}
+button,
+select {
+  background: var(--code-fill);
+  border: 1px solid transparent;
+  border-radius: 3px;
+}
+button:hover,
+select:hover {
+  border-color: var(--muted);
+}
+button.primary {
+  background: var(--ink);
+  color: var(--ground);
+  font-weight: 600;
+}
+button.quiet {
+  background: none;
+  color: var(--muted);
+  text-decoration: underline;
+}
+input[type="text"] {
+  background: var(--code-fill);
+  border: 1px solid transparent;
+  border-bottom-color: var(--muted);
+  border-radius: 3px 3px 0 0;
+  font-family: var(--font-code);
+}
+.example-button {
+  font-weight: 400;
+}
+.example-button .eb-title {
+  font-weight: 600;
+}
+.gallery,
+.glossary {
+  padding-block: var(--space-3);
+  border-block: 1px solid var(--rule);
+}
+.gallery li a {
+  font-weight: 600;
+}
+.gallery li[aria-current] a {
+  color: var(--change);
+  text-decoration: none;
+}
+.g-o,
+.g-note {
+  color: var(--muted);
+}
+.intro {
+  font-size: var(--size-body);
+  line-height: var(--leading-body);
+}
+
+/* Two programs side by side only where JuliaMono's 42-character lines fit. */
+@container (min-width: 720px) and (max-width: 899px) {
+  .programs {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+.code {
+  background: var(--code-fill);
+  border-radius: 3px;
+}
+.kw {
+  font-weight: 600;
+}
+.pane-title {
+  font-weight: 600;
+}
+.pane-det .pane-title,
+.t-det {
+  color: var(--change);
+}
+.mode-g {
+  color: var(--given);
+}
+.mode-e,
+.mean-call {
+  font-weight: 600;
+}
+.hint {
+  font-weight: 400;
+}
+.hint.mode-e {
+  font-weight: 600;
+}
+.pane-det.counter {
+  border-left: 3px solid var(--alert);
+  padding-left: var(--space-4);
+}
+.pane-det.counter .pane-title {
+  color: var(--alert);
+}
+.band-title {
+  font-weight: 600;
+  font-size: var(--size-body);
+}
+.step-head {
+  font-size: var(--size-small);
+  font-weight: 600;
+  color: var(--muted);
+}
+.step[aria-current="step"] {
+  border-left-color: var(--change);
+}
+.step-n {
+  font-family: var(--font-code);
+  font-size: var(--size-small);
+  padding-top: 0.15em;
+}
+.cell-label {
+  font-size: var(--size-small);
+  font-weight: 600;
+}
+.draw code {
+  font-weight: 600;
+}
+.honesty {
+  padding-left: var(--space-3);
+  border-left: 3px solid var(--muted);
+}
+table.stats thead th {
+  font-size: var(--size-small);
+}
+.factor strong {
+  font-weight: 700;
+  color: var(--change);
+  font-size: var(--size-heading);
+  vertical-align: -0.1em;
+  margin-left: 0.2em;
+}
+.premises h3,
+.exact h3 {
+  font-weight: 600;
+}
+.frac {
+  font-weight: 600;
+  font-family: var(--font-code);
+}
+
+.chart text {
+  font-family: var(--font-text);
+  font-size: 12.5px;
+  fill: var(--muted);
+}
+.chart .given {
+  fill: var(--given);
+}
+.chart .axis-title {
+  font-size: 13px;
+}
+.chart .grid,
+.chart .ref {
+  stroke: var(--rule);
+}
+.chart .ref {
+  stroke-dasharray: 2 3;
+}
+.chart .zero,
+.chart .axis,
+.chart .tick {
+  stroke: var(--muted);
+}
+.chart .axis-given,
+.chart .tick-given {
+  stroke: var(--given);
+  stroke-width: 1.5;
+}
+.chart .pt-source {
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 1;
+}
+.chart .pt-det {
+  fill: var(--change);
+}
+.chart .filled {
+  fill: var(--change-fill);
+  stroke: var(--change);
+  stroke-width: 0.8;
+}
+.chart .outline,
+.chart .outline-src {
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 1.4;
+}
+.chart .row-label {
+  font-size: 13px;
+  font-weight: 600;
+  fill: var(--ink);
+}
+.chart .row-det {
+  fill: var(--change);
+}
+.chart .break {
+  fill: none;
+  stroke: var(--ground);
+  stroke-width: 2.5;
+}
+.chart .clip-label {
+  fill: var(--ink);
+}
+.chart .mean-mark {
+  fill: var(--muted);
+}
+.chart .mean-det {
+  fill: var(--change);
+}
+.key {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  margin: 0 0.35em 0 0.6em;
+  vertical-align: 0.05em;
+}
+.key-source {
+  border: 1.5px solid var(--muted);
+}
+.key-det {
+  background: var(--change);
+}

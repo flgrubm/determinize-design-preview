@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Determinize: two design directions</title>
+<style>
+  :root { color-scheme: light dark; --bg: light-dark(#ffffff, #17191c); --fg: light-dark(#1e1c19, #ece8e1); --muted: light-dark(#5f5a53, #a39d93); }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 17px/1.55 system-ui, sans-serif; }
+  main { max-width: 38rem; margin: 0 auto; padding: 3rem 16px; }
+  h1 { font-size: 1.6rem; font-weight: 600; margin: 0 0 1rem; }
+  dt { font-weight: 600; margin-top: 1.25rem; }
+  dd { margin: 0.25rem 0 0; }
+  a { color: inherit; text-underline-offset: 0.18em; }
+  .note { color: var(--muted); font-size: 0.9rem; margin-top: 2.5rem; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Two design directions for the determinize site</h1>
+  <p>Each direction has a landing page and a simulator. Open the landing page; its "Simulator" link leads to the simulator, which has a strip of example states at the top. The simulator's theme menu switches between light and dark; the landing pages follow your system setting.</p>
+  <dl>
+    <dt><a href="a/">A, the paper's figure</a></dt>
+    <dd>The site continues the paper: its typefaces, its two-listing figure and its plot colours, with one accent for what determinization changes. Distributions are histograms.</dd>
+    <dt><a href="b/">B, given the G draws</a></dt>
+    <dd>The site is built around one plot: each run's output against its G draw. The source's runs scatter; the determinized program's runs lie on the curve of the source's mean, so the scatter around the curve is the variance that determinization removes.</dd>
+  </dl>
+  <p>These are static mockups with real programs and statistics from the paper and the Lean command-line tool; nothing runs a program.</p>
+  <p class="note">A temporary preview; it will be removed once a direction is chosen.</p>
+</main>
+</body>
+</html>
